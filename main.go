@@ -1,8 +1,8 @@
 package main
 
 import (
-	"bytes"
-	"encoding/json"
+	// "bytes"
+	// "encoding/json"
 	"fmt"
 	"log"
 	"net/http"
@@ -36,6 +36,15 @@ type PokemonJSON struct {
 	Pokemons *[]Pokemon 
 }
 
-func main()  {
-	fmt.Println(pokemons[0])
+func indexHandler(w http.ResponseWriter, r *http.Request) {
+	_, err := fmt.Fprint(w, "Hello, World!!")
+	if err != nil {
+		return
+	}
+}
+
+func main() {
+	http.HandleFunc("/", indexHandler)
+
+	log.Fatal(http.ListenAndServe(":8080", nil))
 }
