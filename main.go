@@ -1,7 +1,11 @@
 package main
 
 import (
+	"bytes"
+	"encoding/json"
 	"fmt"
+	"log"
+	"net/http"
 )
 
 type Pokemon struct {
@@ -12,19 +16,24 @@ type Pokemon struct {
 
 var pokemons = []Pokemon{{
 	ID:		1,
-	Name:	"Hitokage",
-	Type:	"Fire",
+	Name:	"ヒトカゲ",
+	Type:	"ほのお",
 },
 {
 	ID:		2,
-	Name:	"Zenigame",
-	Type:	"Water",
+	Name:	"ゼニガメ",
+	Type:	"みず",
 },
 {
-	ID:		2,
-	Name:	"Fushigidane",
-	Type:	"Grass",
+	ID:		3,
+	Name:	"フシギダネ",
+	Type:	"くさ",
 },
+}
+
+type PokemonJSON struct {
+	Status int `json:"status"`
+	Pokemons *[]Pokemon 
 }
 
 func main()  {
