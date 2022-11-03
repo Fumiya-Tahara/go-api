@@ -1,8 +1,8 @@
 package main
 
 import (
-	// "bytes"
-	// "encoding/json"
+	"bytes"
+	"encoding/json"
 	"fmt"
 	"log"
 	"net/http"
@@ -43,8 +43,29 @@ func indexHandler(w http.ResponseWriter, r *http.Request) {
 	}
 }
 
+func pokemonsHandler(w http.ResponseWriter, r *http.Request) {
+	var pj PokemonJSON
+	pj.Status = 200
+	pj.Pokemons = &pokemons
+
+	var buf bytes.Buffer
+	enc := json.NewEncoder(&buf)
+	if err := enc.Encode(&pj); err != nil {
+		log.Fatal(err)
+	}
+	fmt.Println(buf.String())
+	fmt.Printf("API呼び出すよ")
+
+	w.Header().Set("Content-Type", "application/json;charset=utf-8")
+
+	_, err := fmt.Fprint(w, buf.String())
+	if err != nil {
+		return
+	}
+}
+
 func main() {
 	http.HandleFunc("/", indexHandler)
-
+	http.HandleFunc("/pokemons", pokemonsHandler)
 	log.Fatal(http.ListenAndServe(":8080", nil))
 }
