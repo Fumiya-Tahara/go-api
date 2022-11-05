@@ -37,7 +37,7 @@ type PokemonJSON struct {
 }
 
 func indexHandler(w http.ResponseWriter, r *http.Request) {
-	_, err := fmt.Fprint(w, "Hello, World!!")
+	_, err := fmt.Fprint(w, "Hello, World!")
 	if err != nil {
 		return
 	}
@@ -54,7 +54,6 @@ func pokemonsHandler(w http.ResponseWriter, r *http.Request) {
 		log.Fatal(err)
 	}
 	fmt.Println(buf.String())
-	fmt.Printf("API呼び出すよ")
 
 	w.Header().Set("Content-Type", "application/json;charset=utf-8")
 
