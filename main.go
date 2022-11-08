@@ -12,22 +12,26 @@ type Pokemon struct {
 	ID int		`json:"id"`
 	Name string	`json:"name"`
 	Type string	`json:"type"`
+	Move string `json:"move"`
 }
 
 var pokemons = []Pokemon{{
 	ID:		1,
 	Name:	"ヒトカゲ",
 	Type:	"ほのお",
+	Move:	"ひのこ",
 },
 {
 	ID:		2,
 	Name:	"ゼニガメ",
 	Type:	"みず",
+	Move:	"みずでっぽう",
 },
 {
 	ID:		3,
 	Name:	"フシギダネ",
 	Type:	"くさ",
+	Move:	"つるのムチ",
 },
 }
 
